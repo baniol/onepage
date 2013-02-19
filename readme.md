@@ -15,7 +15,7 @@
 
 ## Instalation
 ```bash
-$ npm install wintersmith -g
+$ npm install onepage -g
 ```
 The first thing you nedd to do is to find the `conf.exapmle.json` file in your project `res` folder and rename it to `config.json`
 
