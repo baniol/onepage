@@ -1,0 +1,36 @@
+{
+	"name": "onepage",
+	"version": "0.0.1",
+	"description": "Static pages generator",
+	"author": {
+		"name": "Marcin Baniowski",
+		"email": "marcin@baniowski.pl"
+	},
+	"licence": "MIT",
+	"website":{
+		"url": "baniowski.pl"
+	},
+	"main": "./lib/",
+	"bin": {
+	    "onepage": "./bin/onepage"
+	  },
+	 "directories": {
+	    "lib": "./lib/"
+	  },
+	"repository": {
+		"type": "git",
+		"url": "bitbucket"
+	},
+	"private": true,
+	"dependencies": {
+		"watch":"*",
+		"walk":"*",
+		"node-markdown":"*",
+		"jade": "*",
+		"less":"*",
+		"jquery":"*",
+		"optimist":"*",
+		"winston":"*",
+		"ncp":"*"
+	}
+}

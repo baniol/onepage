@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	//- header menu / navigation
+	div#menu-wrapper
+		div#pages_title #{pageTitle}
+		include main_menu
+		div#menu-shadow
+		//- div#page-title
+		//- 	h1
+
+	div#main-content
+
+		//- each page content
+		//- each p,i in pages
+		//- 	- var id = 'page_'+(i+1)
+		//- 	article.page-item(id=id)
+		//- 		div.page-content
+		//- 			!= md(p.content)
+		//- 		div.hidden-title #{p.title}
+
+	//- color patterns for js
+	div#hidden-colors
+		span#page_1
+		span#page_2
+		span#page_3
+		span#page_4
+		span#page_5
+
+	script
+		var arr = !{JSON.stringify(pages)}

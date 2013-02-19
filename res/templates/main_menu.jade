@@ -1,0 +1,15 @@
+nav#main-menu
+	ul.ca-menu
+		each p,i in pages
+			//- - var link = 'page_' + (i+1)
+			- var link = i+1
+			- var icon = 'icon-' + p.icon
+			- var ar = ['one','two','three','four']
+			- var m_title = p.menu_title
+			li(class=""+ar[i]+" "+link,data-id=i)
+				a(href="#")
+					span(class="ca-icon " + icon)
+					div.ca-content
+						h2.ca-main #{p.menu_title}
+
+	div#menu-title asdf

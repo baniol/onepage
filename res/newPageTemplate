@@ -1,0 +1,11 @@
+title:@@page_title@@
+menu_title:@@menu_title@@
+slug:@@slug@@
+icon:fire
+publish:true
+comments:false
+order:@@order@@
+
+//***//
+
+Here goes the content...
