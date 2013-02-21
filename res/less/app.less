@@ -87,7 +87,7 @@ ul{
 
 #main-menu{
     position: relative;
-    padding-top: 10px;
+    padding-top: 40px;
     background-color: @base1;
     overflow: hidden;
     z-index: 100;
@@ -112,6 +112,7 @@ ul{
 
 #main-content{
 	z-index:3;
+	// width:100%;
 	width:100%;
 	position:relative;
 	// top:@menu-height+@page-title-height;
@@ -134,6 +135,11 @@ ul{
 	}
 }
 
+#c-wrapper{
+	height:100%;
+	float: left;
+}
+
 #hidden-colors{
 	display: none;
 
@@ -154,10 +160,17 @@ ul{
 	}
 }
 
-// #swipeview-slider{
-	
-// }
+#swipeview-slider{
+	// &>div{
+	// 	left:20px;
+	// }
+}
 
-.swipeview-active .active-content{
-	padding:0 5px 10px 5px;
+.swipeview-active{
+
+	// padding:0 10px;
+
+	// .active-content{
+	// 	padding:0 5px 10px 5px;
+	// }
 }

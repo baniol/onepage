@@ -10,6 +10,7 @@ $(document).ready(function(){
 		carousel:null,
 		hash:null,
 		hashArray:[],
+		pageScroll:null,
 
 		init: function(){
 			$this = this;
@@ -44,16 +45,36 @@ $(document).ready(function(){
 			var liWidth= menuLi.width();
 			// console.log(liWidth*lic);
 			$('#main-menu .ca-menu').width(liWidth*lic+30);
+			$('#main-content').css(
+				{
+					'margin-top':$('#menu-wrapper').height()+'px'
+					// height:'400px'
+				});
 
-			$('#main-content').css({'margin-top':$('#menu-wrapper').height()+'px'});
 			// init content swipe
-			this.startSwipeview(arr);
+			// this.startSwipeview(arr);
+
+			var slideWidth = $('#main-content').width();
+			$('#content-list li').width(slideWidth);
+			$('#c-wrapper').width(slideWidth*lic);
+
+			this.pageScroll = new iScroll('main-content', {
+				vScroll:false,
+				snap: true,
+				momentum: false,
+				hScrollbar: false,
+				onScrollEnd: function () {
+					$this.currentPage = this.currPageX;
+					$this.changeMenu();
+					$this.setContentHeight();
+				}
+			 });
 
 			// stretching content to bottom
 			this.setContentHeight();
 
 			// init hash
-			this.pagesNum = arr.length;
+			this.pagesNum = lic;
 			this.createHashArray();
 			this.currentPage = this.pageByHash();
 			this.hash = arr[this.currentPage].slug;
@@ -69,8 +90,9 @@ $(document).ready(function(){
 
 		setContentHeight: function(){
 			setTimeout(function(){
-				var act = $('.swipeview-active .active-content').height();
-				$('#main-content').height(act);
+				var p = parseInt($this.currentPage+1,10);
+				var act = $('#page_'+p).height();
+				$('#main-content').height(act+30);
 			},10);
 		},
 
@@ -125,8 +147,9 @@ $(document).ready(function(){
 
 		changePage: function(slide){
 			this.changeMenu();
-			if(slide === undefined)
-				this.carousel.goToPage($this.currentPage);
+			this.pageScroll.scrollToPage(this.currentPage);
+			// if(slide === undefined)
+			// 	this.carousel.goToPage($this.currentPage);
 			// @todo - custom urls/hashes
 			this.changeHash();
 			this.changeColor();
@@ -138,7 +161,7 @@ $(document).ready(function(){
 			var m = $('#main-menu .ca-menu li[data-id='+this.currentPage+']');
 			$('#main-menu .ca-menu li').removeClass('hover');
 			m.addClass('hover');
-			$('#menu-title').text(curr.menu_title);
+			$('#menu-title').text(curr.title);
 		},
 
 		changeColor: function(){
