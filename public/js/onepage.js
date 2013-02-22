@@ -51,9 +51,6 @@ $(document).ready(function(){
 					// height:'400px'
 				});
 
-			// init content swipe
-			// this.startSwipeview(arr);
-
 			var slideWidth = $('#main-content').width();
 			$('#content-list li').width(slideWidth);
 			$('#c-wrapper').width(slideWidth*lic);
@@ -63,6 +60,7 @@ $(document).ready(function(){
 				snap: true,
 				momentum: false,
 				hScrollbar: false,
+				// onBeforeScrollStart: function (e) { return true; },
 				onScrollEnd: function () {
 					$this.currentPage = this.currPageX;
 					$this.changeMenu();
@@ -148,9 +146,6 @@ $(document).ready(function(){
 		changePage: function(slide){
 			this.changeMenu();
 			this.pageScroll.scrollToPage(this.currentPage);
-			// if(slide === undefined)
-			// 	this.carousel.goToPage($this.currentPage);
-			// @todo - custom urls/hashes
 			this.changeHash();
 			this.changeColor();
 		},
