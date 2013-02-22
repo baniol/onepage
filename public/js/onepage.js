@@ -10,7 +10,6 @@ $(document).ready(function(){
 		carousel:null,
 		hash:null,
 		hashArray:[],
-		pageScroll:null,
 
 		init: function(){
 			$this = this;
@@ -51,25 +50,9 @@ $(document).ready(function(){
 					// height:'400px'
 				});
 
-			var slideWidth = $('#main-content').width();
-			$('#content-list li').width(slideWidth);
-			$('#c-wrapper').width(slideWidth*lic);
-
-			this.pageScroll = new iScroll('main-content', {
-				vScroll:false,
-				snap: true,
-				momentum: false,
-				hScrollbar: false,
-				// onBeforeScrollStart: function (e) { return true; },
-				onScrollEnd: function () {
-					$this.currentPage = this.currPageX;
-					$this.changeMenu();
-					$this.setContentHeight();
-				}
-			 });
-
-			// stretching content to bottom
-			this.setContentHeight();
+			// var slideWidth = $('#main-content').width();
+			// $('#content-list li').width(slideWidth);
+			// $('#c-wrapper').width(slideWidth*lic);
 
 			// init hash
 			this.pagesNum = lic;
@@ -86,13 +69,13 @@ $(document).ready(function(){
 			$this.initScroll(0,$('#main-menu')[0],{hScrollbar:false});
 		},
 
-		setContentHeight: function(){
-			setTimeout(function(){
-				var p = parseInt($this.currentPage+1,10);
-				var act = $('#page_'+p).height();
-				$('#main-content').height(act+30);
-			},10);
-		},
+		// setContentHeight: function(){
+		// 	setTimeout(function(){
+		// 		var p = parseInt($this.currentPage+1,10);
+		// 		var act = $('#page_'+p).height();
+		// 		$('#main-content').height(act+30);
+		// 	},10);
+		// },
 
 		bindEvents: function(){
 			$(document).on('click','.ca-menu li',function(e){
@@ -145,7 +128,10 @@ $(document).ready(function(){
 
 		changePage: function(slide){
 			this.changeMenu();
-			this.pageScroll.scrollToPage(this.currentPage);
+			// this.pageScroll.scrollToPage(this.currentPage);
+			var page = $('#page_'+($this.currentPage+1));
+			$('#main-content article').hide();
+			page.show();
 			this.changeHash();
 			this.changeColor();
 		},

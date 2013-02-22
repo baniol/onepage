@@ -12,12 +12,12 @@ block content
 	div#main-content
 
 		//- each page content
-		//- each p,i in pages
-		//- 	- var id = 'page_'+(i+1)
-		//- 	article.page-item(id=id)
-		//- 		div.page-content
-		//- 			!= md(p.content)
-		//- 		div.hidden-title #{p.title}
+		each p,i in pages
+			- var id = 'page_'+(i+1)
+			article.page-item(id=id)
+				div.page-content
+					!= md(p.content)
+				div.hidden-title #{p.title}
 
 	//- color patterns for js
 	div#hidden-colors
