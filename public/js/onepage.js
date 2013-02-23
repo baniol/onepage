@@ -124,7 +124,10 @@ $(document).ready(function(){
 
 			$('menu-title').width(contW);
 			$('#menu-wrapper').width(contW);
-			$('#page-nav').css({width:mcontent,left:m});;
+			if($this.touchDev)
+				$('#page-nav').css({width:mcontent,left:m});
+			else
+				$('#page-nav').hide();
 		},
 
 		createHashArray: function(){
