@@ -10,9 +10,16 @@ $(document).ready(function(){
 		carousel:null,
 		hash:null,
 		hashArray:[],
+		touchDev:null,
+		clickEvent:null,
 
 		init: function(){
 			$this = this;
+
+			// touch device detection
+			this.touchDev = this.touchDev();
+			// this.clickEvent = this.touchDev ? 'touchstart' : 'click';
+			this.clickEvent = 'click';
 
 			this.hash = window.location.hash;
 
@@ -23,7 +30,7 @@ $(document).ready(function(){
 				$this.colorArray.push(c);
 			});
 
-			$('#menu-wrapper').width($("#content-wrapper").width());
+			this.setMenuWidth();
 			var menuLi = $('#main-menu .ca-menu li');
 
 			// set top menu items colors
@@ -44,15 +51,7 @@ $(document).ready(function(){
 			var liWidth= menuLi.width();
 			// console.log(liWidth*lic);
 			$('#main-menu .ca-menu').width(liWidth*lic+30);
-			$('#main-content').css(
-				{
-					'margin-top':$('#menu-wrapper').height()+'px'
-					// height:'400px'
-				});
-
-			// var slideWidth = $('#main-content').width();
-			// $('#content-list li').width(slideWidth);
-			// $('#c-wrapper').width(slideWidth*lic);
+			$('#main-content').css({'margin-top':$('#menu-wrapper').height()+'px'});
 
 			// init hash
 			this.pagesNum = lic;
@@ -69,41 +68,63 @@ $(document).ready(function(){
 			$this.initScroll(0,$('#main-menu')[0],{hScrollbar:false});
 		},
 
-		// setContentHeight: function(){
-		// 	setTimeout(function(){
-		// 		var p = parseInt($this.currentPage+1,10);
-		// 		var act = $('#page_'+p).height();
-		// 		$('#main-content').height(act+30);
-		// 	},10);
-		// },
-
 		bindEvents: function(){
-			$(document).on('click','.ca-menu li',function(e){
+			window.addEventListener('orientationchange', function(){$this.orientationChange();}, false);
+			$(document).on($this.clickEvent,'.ca-menu li',function(e){
 				e.preventDefault();
 				$this.currentPage = $(this).data('id');
 				$this.changePage();
 			});
+
+			$(document).on($this.clickEvent,'#page-nav .left',function(e){
+				$this.navLeft();
+			});
+
+			$(document).on($this.clickEvent,'#page-nav .right',function(e){
+				$this.navRight();
+			});
+
 			$(document).keydown(function(e){
 			    if (e.keyCode == 37) { // left
-			       if($this.currentPage == 0){
-			       		$this.currentPage = $this.pagesNum-1;
-			       }
-			       else{
-			       		$this.currentPage--;
-			       }
-			       $this.changePage();
+			       $this.navLeft();
 			    }
 			    if (e.keyCode == 39) { // right
-			       var index;
-			       if($this.currentPage == $this.pagesNum-1){
-			       		$this.currentPage = 0;
-			       }
-			       else{
-			       		$this.currentPage++;
-			       }
-			       $this.changePage();
+			       $this.navRight();
 			    }
 			});
+		},
+
+		navLeft: function(){
+			if($this.currentPage == 0){
+				$this.currentPage = $this.pagesNum-1;
+			}
+			else{
+				$this.currentPage--;
+			}
+			$this.changePage();
+		},
+
+		navRight: function(){
+			var index;
+				if($this.currentPage == $this.pagesNum-1){
+				$this.currentPage = 0;
+			}
+			else{
+				$this.currentPage++;
+			}
+			$this.changePage();
+		},
+
+		setMenuWidth: function(){
+			var docW = $(document).width(),
+				contW = $("#content-wrapper").width(),
+				mcontent = $('#main-content').width(),
+				add = mcontent >= 800 ? 7 : 0,
+				m = (docW - mcontent)/2 - add;
+
+			$('menu-title').width(contW);
+			$('#menu-wrapper').width(contW);
+			$('#page-nav').css({width:mcontent,left:m});;
 		},
 
 		createHashArray: function(){
@@ -128,7 +149,6 @@ $(document).ready(function(){
 
 		changePage: function(slide){
 			this.changeMenu();
-			// this.pageScroll.scrollToPage(this.currentPage);
 			var page = $('#page_'+($this.currentPage+1));
 			$('#main-content article').hide();
 			page.show();
@@ -158,42 +178,6 @@ $(document).ready(function(){
 			$('#menu-wrapper,#main-menu').css('background-color',color);
 		},
 
-		startSwipeview: function(slides){
-            var el,i,page;
-            this.carousel = new SwipeView('#main-content', {
-                numberOfPages: slides.length,
-                hastyPageFlip: true,
-                loop:true
-            });
-
-            // Load initial data
-            for (i=0; i<3; i++) {
-                page = i==0 ? slides.length-1 : i-1;
-                el = $('<div class="active-content" />')
-                el.html(slides[page].content);
-                $this.carousel.masterPages[i].appendChild(el[0]);
-            }
-
-            // $this.initScroll(1,$('.swipeview-active')[0]);
-
-            $this.carousel.onFlip(function () {
-                var el,upcoming,i;
-                for (i=0; i<3; i++) {
-
-                    upcoming = $this.carousel.masterPages[i].dataset.upcomingPageIndex;
-
-                    if (upcoming != $this.carousel.masterPages[i].dataset.pageIndex) {
-                    	$this.currentPage = $this.carousel.pageIndex;
-                        $this.changePage(true);
-                        el = $this.carousel.masterPages[i].querySelector('div');
-                        el.innerHTML = slides[upcoming].content;
-                    }
-                }
-                $this.setContentHeight();
-                // $this.initScroll(1,$('.swipeview-active')[0]);
-            });
-        },
-
         initScroll: function(index,element,opt){
         	var options = opt || {};
             // $('#swipeview-slider .swipeview-active span').css({display:'block'});
@@ -204,7 +188,23 @@ $(document).ready(function(){
 	            options.useTransition = true;
 	            $this._iScroll[index] = new iScroll(element,options);
             },200);
-        }
+        },
+
+		touchDev: function() {
+			return !!('ontouchstart' in window) // works on most browsers 
+			|| !!('onmsgesturechange' in window); // works on ie10
+		},
+
+		orientationChange: function(){
+			this.setMenuWidth();
+			this.changePage();
+			// if (orientation == 0 || orientation == 180) {
+			//   //portraitMode, do your stuff here
+			// }
+			// else if (orientation == 90 || orientation == -90) {
+			//   //landscapeMode
+			// }
+		}
 	};
 
 	pages.init();
