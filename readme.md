@@ -1,6 +1,7 @@
-# work in progress -  not quite finished :) (not published on npm)
+# Onepage : static one page site generator
 
-## Onepage : one page static site cli generator
+## Description
+Onepage is a one page site generator ...
 
 ## Features
 * Easy content, layout and style edition
@@ -34,11 +35,12 @@ and continue to work with the following comands:
 ```bash
 $ onepage watch
 ```
+In this mode a server instance observes every change in your markdown, jade & less files.
+
 ### One time compilation
 ```bash
 $ onepage compile
 ```
-In this mode a server instance observes every change in your markdown, jade & less files.
 
 ### Add a new page
 
