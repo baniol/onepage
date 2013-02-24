@@ -1,6 +1,6 @@
 {
 	"name": "onepage",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Static one-page site generator",
 	"keywords":["static","generator","markdown","one-page"],
 	"author": {
