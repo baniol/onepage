@@ -12,7 +12,7 @@ Onepage generates a one-page navigable static website from markdown files.
 * less css styling
 * Custom color scheme definition
 
-## Instalation
+## Installation
 ```bash
 $ npm install onepage -g
 ```
