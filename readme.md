@@ -71,3 +71,5 @@ You will find all styling files in the `<your_project_folder>/res/less` folder. 
 
 ### Jade templates customization
 All your templates are in `<your_project_folder>/res/templates` folder.
+
+### [Example Site](http://onepage.baniowski.pl)
