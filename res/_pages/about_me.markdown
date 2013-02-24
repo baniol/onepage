@@ -3,12 +3,11 @@ menu_title:About me
 slug:about_me
 icon:user
 publish:true
-comments:false
 order:2
 
 //***//
 
-[Some link](http://example.net/) has no title attribute.
+[Some link](http://aristeides.com/elusive-iconfont/)
 
 ### What is lorem ipsum?
 

@@ -3,7 +3,6 @@ menu_title:private
 slug:private
 icon:lock
 publish:true
-comments:false
 order:4
 
 //***//

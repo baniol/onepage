@@ -1,3 +1,4 @@
 #!/usr/bin/env node
+
 // general idea for cli taken from : https://github.com/jnordberg/wintersmith
 require('../lib/cli/').main();

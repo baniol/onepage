@@ -1,8 +1,8 @@
 {
 	"name": "onepage",
 	"version": "0.0.1",
-	"description": "Static pages generator",
-	"keywords":["static","generator","markdown"],
+	"description": "Static one-page site generator",
+	"keywords":["static","generator","markdown","one-page"],
 	"author": {
 		"name": "Marcin Baniowski",
 		"email": "marcin@baniowski.pl"

@@ -3,7 +3,6 @@ menu_title:twitter
 slug:twitter
 icon:twitter
 publish:true
-comments:false
 order:6
 
 //***//

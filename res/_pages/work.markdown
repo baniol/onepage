@@ -3,11 +3,10 @@ menu_title:Work
 slug:work
 icon:cogs
 publish:true
-comments:false
 order:2
 //***//
 
-## Here is the list of some of my recent projects
+## some list in a table
 
 <table class="work-list">
 	<!-- <caption>Projects</caption> -->
@@ -21,17 +20,17 @@ order:2
 	</thead>
 	<tbody>
 		<tr>
-			<td>Onepage</td>
-			<td>Node modul for static page generation</td>
-			<td>github.com/baniol</td>
+			<td>name one</td>
+			<td>name two</td>
+			<td>name three</td>
 			<td>pic...</td>
 		</tr>
 		<tr>
-			<td>Kindle My Clippings</td>
-			<td>Kindle notes parser</td>
-			<td>github.com/baniol</td>
+			<td>one</td>
+			<td>two</td>
+			<td>three</td>
 			<td>
-				asdfasdf
+				example
 			</td>
 		</tr>
 	</tbody>

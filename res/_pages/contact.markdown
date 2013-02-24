@@ -3,7 +3,6 @@ menu_title:contact
 slug:contact
 icon:envelope
 publish:true
-comments:false
 order:7
 
 //***//

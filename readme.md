@@ -1,41 +1,34 @@
-# Onepage : static one page site generator
+# Onepage : a static one-page site generator
 
 ## Description
-Onepage is a one page site generator ...
+Onepage generates a one-page navigable static website from markdown files.
 
 ## Features
-* Easy content, layout and style edition
-* Server instance preview - watch mode
-* Easy site navigation - arrows & swipe
-* Default template suported by touch devices - swipe & responsive layout
+* Http server - watch mode
+* Quick deploy to a remote server using rsync
+* Default layout for desktop and mobile touch devices
 * Markdown - work from your favourite IDE
-* Simple Jade templating
-* Less style engine
+* simple jade templating
+* less css styling
 * Custom color scheme definition
-* Quick to deploy (rsync)
 
 ## Instalation
 ```bash
 $ npm install onepage -g
 ```
-The first thing you nedd to do is to find the `conf.exapmle.json` file in your project `res` folder and rename it to `config.json`
 
 ## Usage
 ### Create new project/site
 ```bash
-$ onepage newsite <folder_name>
+$ onepage news <folder_name>
 ```
-This command creates a new onepage project in a folder you are currently in, then you enter the folder:
-```bash
-$ cd <folder_name>
-```
-and continue to work with the following comands:
+This command creates a new onepage project in a folder you are currently in; next in a newly created folder:
 
 ### Launch preview / watch mode
 ```bash
 $ onepage watch
 ```
-In this mode a server instance observes every change in your markdown, jade & less files.
+In this mode a server instance observes every change in your markdown, jade & less files. You have to point you browser to [http://localhost:8000](http://localhost:8000)
 
 ### One time compilation
 ```bash
@@ -47,6 +40,16 @@ $ onepage compile
 ```bash
 $ onepage addpage <page_name>
 ```
+You can find all your markdown files in the `<your_project_folder>/res/_pages` folder
+
+Options for each created page are in it's head section (before `//***//` mark).
+
+Here you can set:
+
+* the page title (longer, as it appears in the page title section)
+* the menu title (shorter)
+* hash name - slug
+* menu icon - all you have to do is write the second part (after `icon-`) of the icon name. The full list of icons: [Elusive Icons](http://aristeides.com/elusive-iconfont/)
 
 ### Deploy to a remote server
 
@@ -55,20 +58,16 @@ If you are ready to move your files to a server (and you have provided your serv
 $ onepage deploy
 ```
 ## Configuration
-You will find a configuration file in your project directory under `res` folder.
-
-Things to configure: your site title, deployment server data...
+You will find a configuration file in your project folder in the `res` folder.
 
 
-## Creating & editing pages
+## Customization
 
-```markdown
----
-xxx
----
-```
+### Color schemes
+Set the color scheme in the `config.json` file. You can add you own color scheme to the `<your_project_folder>/res/less/color-themes` folder.
 
-### Customization
+### CSS styling
+You will find all styling files in the `<your_project_folder>/res/less` folder. If in watch mode (cli command `onepage watch`) all changes are applied as you save the less file.
 
-
-## TODO
+### Jade templates customization
+All your templates are in <your_project_folder>/res/templates` folder.

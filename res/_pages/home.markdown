@@ -3,7 +3,6 @@ menu_title:Home
 slug:home
 icon:home
 publish:true
-comments:false
 order:1
 
 //***//
