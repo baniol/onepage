@@ -20,7 +20,7 @@ $ npm install onepage -g
 ## Usage
 ### Create new project/site
 ```bash
-$ onepage news <folder_name>
+$ onepage new <folder_name>
 ```
 This command creates a new onepage project in a folder you are currently in; next in a newly created folder:
 
@@ -70,4 +70,4 @@ Set the color scheme in the `config.json` file. You can add you own color scheme
 You will find all styling files in the `<your_project_folder>/res/less` folder. If in watch mode (cli command `onepage watch`) all changes are applied as you save the less file.
 
 ### Jade templates customization
-All your templates are in <your_project_folder>/res/templates` folder.
+All your templates are in `<your_project_folder>/res/templates` folder.

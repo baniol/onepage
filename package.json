@@ -19,6 +19,7 @@
 		"type": "git",
 		"url": "https://github.com/baniol/onepage"
 	},
+	"preferGlobal":true,
 	"dependencies": {
 		"watch":"0.5.1",
 		"walk":"2.2.1",
